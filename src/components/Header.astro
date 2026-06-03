@@ -1,0 +1,63 @@
+---
+const { activePage = '' } = Astro.props;
+const navLinks = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/about', label: 'About', key: 'about' },
+  { href: '/capabilities', label: 'Capabilities', key: 'capabilities' },
+  { href: '/products', label: 'Products', key: 'products' },
+  { href: '/quality', label: 'Quality', key: 'quality' },
+  { href: '/facility', label: 'Facility', key: 'facility' },
+  { href: '/contact', label: 'Contact', key: 'contact' },
+];
+---
+
+<header>
+  <div class="container nav">
+    <a href="/" class="logo">Nidhi <span>Auto</span></a>
+    <nav class="nav-links">
+      {navLinks.map(link => (
+        <a href={link.href} class={activePage === link.key ? 'active' : ''}>{link.label}</a>
+      ))}
+    </nav>
+    <div class="nav-right">
+      <a href="/contact" class="btn btn-primary">Send RFQ</a>
+      <button class="menu-btn" aria-label="Open menu" id="menu-open">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-overlay" id="menu-overlay"></div>
+  <div class="mobile-menu-panel">
+    <button class="mobile-menu-close" id="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    {navLinks.map(link => (
+      <a href={link.href} class={activePage === link.key ? 'active' : ''}>{link.label}</a>
+    ))}
+    <a href="/contact" class="btn btn-primary">Send RFQ</a>
+  </div>
+</div>
+
+<script>
+  const openBtn = document.getElementById('menu-open');
+  const closeBtn = document.getElementById('menu-close');
+  const overlay = document.getElementById('menu-overlay');
+  const menu = document.getElementById('mobile-menu');
+
+  function openMenu() { menu?.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { menu?.classList.remove('open'); document.body.style.overflow = ''; }
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  overlay?.addEventListener('click', closeMenu);
+</script>

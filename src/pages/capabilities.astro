@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const checkIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+const capabilities = [
+  {
+    eyebrow: 'Capability 01',
+    title: 'Sheet Metal Components',
+    desc: 'Precision sheet metal parts produced to strict dimensional tolerances using disciplined process control.',
+    features: ['Blanking, bending and forming operations', 'Tight dimensional accuracy and repeatability', 'Clean, burr-free finishing'],
+    flip: false,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>`,
+    phLabel: 'Sheet Metal Placeholder',
+  },
+  {
+    eyebrow: 'Capability 02',
+    title: 'Fabricated Parts',
+    desc: 'High-quality fabricated parts engineered for diverse automotive applications and structural needs.',
+    features: ['Cutting, drilling and forming', 'Sub-assembly fabrication', 'Application-specific tooling'],
+    flip: true,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+    phLabel: 'Fabricated Parts Placeholder',
+  },
+  {
+    eyebrow: 'Capability 03',
+    title: 'Welded Assemblies',
+    desc: 'Strong, reliable welded assemblies built for performance and long-term durability.',
+    features: ['Robust, consistent weld quality', 'Jig and fixture-based accuracy', 'Inspection of critical joints'],
+    flip: false,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    phLabel: 'Welded Assemblies Placeholder',
+  },
+  {
+    eyebrow: 'Capability 04',
+    title: 'Custom Auto Components',
+    desc: 'Tailored component solutions developed around specific customer drawings and requirements.',
+    features: ['Build-to-print manufacturing', 'Repeat order support', 'Collaborative engineering'],
+    flip: true,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+    phLabel: 'Custom Components Placeholder',
+  },
+];
+---
+
+<Layout title="Capabilities — Nidhi Auto LLP" description="From precision sheet metal to custom welded assemblies — engineered to strict tolerances for the automotive industry." activePage="capabilities">
+
+  <section class="page-header">
+    <div class="container">
+      <div class="crumb"><a href="/">Home</a> / <span>Capabilities</span></div>
+      <h1>Our Manufacturing Capabilities</h1>
+      <p>From precision sheet metal to custom welded assemblies — engineered to strict tolerances for the automotive industry.</p>
+    </div>
+  </section>
+
+  <section class="capabilities" style="padding-top:72px">
+    <div class="container">
+      <div class="cap-grid">
+        {capabilities.map(cap => (
+          <div class="cap-card">
+            <div class="cap-icon" set:html={cap.icon}></div>
+            <h3>{cap.title}</h3>
+            <div class="rule"></div>
+            <p>{cap.desc.split('.')[0]}.</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      {capabilities.map(cap => (
+        <div class={`cap-detail${cap.flip ? ' flip' : ''}`}>
+          <div class="cap-detail-media">
+            <div class="ph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
+              <span class="ph-label">{cap.phLabel}</span>
+            </div>
+          </div>
+          <div>
+            <div class="cap-icon" style="color:var(--orange);margin-bottom:6px" set:html={cap.icon}></div>
+            <p class="eyebrow">{cap.eyebrow}</p>
+            <h3>{cap.title}</h3>
+            <p>{cap.desc}</p>
+            <ul>
+              {cap.features.map(f => (
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand />
+
+</Layout>

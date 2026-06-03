@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const products = [
+  { title: 'Brackets', desc: 'Built-to-spec brackets for various automotive mounting and structural applications.' },
+  { title: 'Mounting Parts', desc: 'Parts for mounting units, ensuring secure fit and dependable performance.' },
+  { title: 'Welded Assemblies', desc: 'Robust welded assemblies built for strength and reliability.' },
+  { title: 'Sheet Metal Parts', desc: 'High-precision sheet metal components with an excellent finish.' },
+  { title: 'Support Components', desc: 'Reliable support components for structural and functional needs.' },
+  { title: 'Custom Parts', desc: 'Custom-engineered parts produced as per specific customer requirements.' },
+];
+
+const chips = ['All Products', 'Sheet Metal', 'Brackets', 'Mounting Parts', 'Welded Assemblies', 'Custom'];
+---
+
+<Layout title="Products — Nidhi Auto LLP" description="A broad portfolio of precision automotive components — from brackets and mounting parts to custom-engineered assemblies." activePage="products">
+
+  <section class="page-header">
+    <div class="container">
+      <div class="crumb"><a href="/">Home</a> / <span>Products</span></div>
+      <h1>45 Product Portfolio</h1>
+      <p>A broad portfolio of precision automotive components — from brackets and mounting parts to fully custom-engineered assemblies.</p>
+    </div>
+  </section>
+
+  <section class="products">
+    <div class="container">
+      <div class="chips">
+        {chips.map((chip, i) => (
+          <span class={`chip${i === 0 ? ' active' : ''}`}>{chip}</span>
+        ))}
+      </div>
+      <div class="prod-grid stacked">
+        {products.map(product => (
+          <div class="prod-card stacked">
+            <div class="ph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
+              <span class="ph-label">Product Image<br/>Placeholder</span>
+            </div>
+            <div class="prod-info">
+              <span class="prod-tag">Automotive Component</span>
+              <h3>{product.title}</h3>
+              <p>{product.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+
+</Layout>
+
+<script>
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+</script>
